@@ -41,9 +41,10 @@ logger = logging.getLogger(__name__)
 
 embedding_model = OllamaEmbeddings(model="llama3.1")
 vector_db_path = "./document_vector_db.parquet"
+num_docs_to_extract = 5
 
 store = DocsStore(embedding_model, vector_db_path, logger)
-retriever = store.get_retriever(5)
+retriever = store.get_retriever(num_docs_to_extract)
 
 
 rag_application = RAGApplication(retriever, build_rag_chain(), logger)
